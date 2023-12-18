@@ -1,0 +1,55 @@
+{% extends 'master.html' %}
+
+{% block title %}Detalles de la tarea{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row card" style="background: #202020;">
+    <div class="col-md-4 offset-md-4" style="color: rgb(175, 194, 210);">
+      <h1>{{task.title}}</h1>
+      <h3>{% if task.datecompleted %} Task completed {% else %} Pending task {% endif %}</h3>
+      <p>{{task.description}}</p>
+      <h2 style="background-color: darkgoldenrod;">{{error}}</h2>
+      <button><a href="{% url 'main_dashboard' %}">
+        Go to my dashboard
+      </a></button>
+    </div>
+  </div>
+
+  <div class="row card pt-5" style="background: #202020;">
+    <div class="col-md-4 offset-md-4" style="color: rgb(175, 194, 210);">
+      <form method="POST" class="pb-3">
+        <h4>To edit task use the form below. Once you finish, hit <strong>update</strong> button below.
+          To delete task, simply hit <strong>delete</strong> button.
+          If you completed your task hit the <strong>Complete</strong> button
+        </h4>
+        {% csrf_token %}
+        {{form.as_p}}
+        <button class="btn btn-primary" style="width: 100%;">Update</button>
+      </form>
+      <div>
+        <form action="{% url 'complete_task' task.id %}" method="POST" class="pb-3">
+          {% csrf_token %}
+          <button class="btn btn-success" style="width: 100%;">
+            Complete
+          </button>
+        </form>
+        <form action="{% url 'delete_task' task.id %}" method="POST" class="pb-3">
+          {% csrf_token %}
+          <button class="btn btn-danger" style="width: 100%;">
+            Delete
+          </button>
+        </form>
+      </div>
+      
+      
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+{% endblock %}

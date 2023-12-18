@@ -1,0 +1,21 @@
+{% extends 'master.html' %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-4 offset-md-4" style="background: rgb(159, 206, 159);" >
+    <div class="card card-body" style="background: rgb(80, 145, 80);">
+      <form action="/signin/" method="POST" class="p-3" style="background: rgb(73, 182, 73);">
+        <h1>Sign in page</h1>
+        {{error}}
+        {% csrf_token %}
+        {{form.as_p}}
+        <button>
+        Sign in
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

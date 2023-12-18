@@ -1,0 +1,38 @@
+{% extends 'master.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="row card" style="background: #202020;">
+    <div class="col-md-4 offset-md-4" style="color: rgb(175, 194, 210);">
+      <h2>These are your completed tasks</h2>
+{% if tasks %}
+{% for task in tasks %}
+<ul>
+  <li>
+    <div class="card" style="background: rgb(171, 210, 171);">
+      <div class="card-header">
+        <h3>{{task.title}}</h3>
+      </div>
+      <div class="card-body">
+        <p class="larger">{{task.description}}</p>
+        <p class="larger">Initial date: {{task.created}}</p>
+        <p class="larger">Completion date: {{task.datecompleted}}</p>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-primary">Go to report</button>
+      </div>
+      
+    </div>
+    
+  </li>
+
+</ul>
+{% endfor %}
+{% else %}
+<h2>There are no completed tasks yet</h2>
+{% endif %}
+    </div>
+  </div>
+
+</div>
+{% endblock %}

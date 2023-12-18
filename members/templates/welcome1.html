@@ -1,0 +1,8 @@
+{% extends 'master.html' %}
+
+
+{% block content %}
+<h1 style="color: wheat;">Welcome {{user}}, you have successfully signed up</h1>
+<h2 style="color: wheat;">Click 'Go' to continue to your main dashboard</h2>
+<button class="btn btn-success"><a href="{% url 'main_dashboard' %}" style="color: aliceblue;">Go</a></button>
+{% endblock %}

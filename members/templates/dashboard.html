@@ -1,0 +1,70 @@
+{% extends 'master.html' %}
+
+{% block title %} {{user.username}} Dashboard {% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row card" style="background: #202020;">
+    <div class="col-md-4 offset-md-4 ">
+      <h1 style="color: rgb(132, 164, 192);">Welcome {{user.username}}!, this is your main Dashboard</h1>
+      {% if error %}
+      <h1>{{error}}</h1>
+      {% endif %}
+    </div>
+  </div>
+
+  
+
+  <div class="row card" style="background: #202020;">
+    <div class="col-md-4 offset-md-4" style="background: rgb(238, 233, 233);" >
+      {% if tasks %}
+      <h2 style="color: rgb(11, 39, 62);">Tienes una lista de tareas</h2>
+      <ol style="color: rgb(14, 43, 69);">
+        {% for task in tasks %}
+        <li style="color: rgb(16, 45, 70); font-size: larger;">
+          <a href="{% url 'task_detail' task.id %}" style="color: rgb(13, 44, 67);">
+            {{task.title}} 
+          </a> 
+          <p>
+            {% if task.important %}<strong>Important!</strong> {% endif %} 
+          </p>
+          <p>
+            {% if task.datecompleted %} 
+            Task has been completed at: {{task.datecompleted}} 
+            {% else %} 
+            Task is pending 
+            {% endif %}
+          </p>  
+        </li>
+        {% endfor %}
+      </ol>
+    {% else %}
+    <h2 style="color: rgb(19, 62, 97);">There are no tasks to display, you can start adding them in the form below</h2>
+  {% endif %}
+    </div>
+  </div>
+
+
+
+  <div class="row card pt-5" style="background: #202020;">
+    <div class="col-md-4 offset-md-4" style="background: rgb(228, 221, 221);" >
+      <h2 style="color: rgb(10, 35, 59);">
+        Add a task
+      </h2>
+      <form action="" method="POST" style="color: rgb(13, 33, 52);">
+        {% csrf_token %}
+        {{form.as_p}}
+      <button class="btn btn-primary" style="width: 100%;">
+        Submit
+      </button>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+
+
+  
+{% endblock %}
+

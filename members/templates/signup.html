@@ -1,0 +1,50 @@
+{% extends  'master.html' %}
+
+{% block title %}Sign up Page{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-4 offset-md-4" style="background: rgb(51, 121, 51);">
+    <div class="card card-body" style="background:  rgb(95, 164, 95);">
+      <form action="/signup/" method="POST" style="background: rgb(127, 194, 127)">
+        <h1 class="text-center mt-4">Sign up</h1>
+        {% if error %}
+        <h1 style="color: rgb(178, 73, 73);">{{error}}</h1>
+        {% else %}
+        <h1>{{success}}</h1>
+        {% endif %}
+        {% csrf_token %}
+        <div class="mb-3">
+          <label style="display: block;" for="first_name">Please type your first Name</label>
+          <input style="display: block; width: 100%;" type="text" name="first_name" id="first_name" class="form-contol" placeholder="Enter first name" required>
+        </div>
+        <div class="mb-3">
+          <label style="display: block;" for="last_name">please type your last name</label>
+          <input style="display: block; width: 100%;"  type="text" name="last_name" id="last_name" class="form-contol" placeholder="Enter last name" required>
+        </div>
+        <div class="mb-3">
+          <label style="display: block;" for="username">Create a username</label>
+          <input  style="display: block; width: 100%;" type="text" name="username" id="username" class="form-contol" placeholder="Create a username" required>
+        </div>
+        <div class="mb-3">
+          <label style="display: block;" for="password1">Create a password</label>
+          <input style="display: block; width: 100%;" type="password" name="password1" id="password1" class="form-contol" placeholder="Create a password" required>
+        </div>
+        <div class="mb-3">
+          <label style="display: block;" for="password2">Confirm Password</label>
+          <input style="display: block; width: 100%;"  type="password" name="password2" id="password2" class="form-contol" placeholder="Confirm password" required>
+        </div>
+        <div class="d-grid gap-2">
+          <button class="btn btn-primary">
+            Sign up
+          </button>
+        </div>
+        
+      </form>
+    </div>
+    
+  </div>
+  
+</div>
+
+{% endblock %}

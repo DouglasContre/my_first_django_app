@@ -1,0 +1,32 @@
+{% extends 'master.html' %}
+{% block title %}Study Club Home Page{% endblock %}
+
+{% block content %}
+
+  <section class="card card-body" style="background: rgb(127, 194, 127);">
+    <h1 class="display-2 text-center">
+      DJANGO APP PROJECT 1
+    </h1>
+    <h2 class="display-3 text-center">
+      Welcome to your study club
+    </h2>
+    <p>
+      We are a community with members from around the world who use this page to keep a record of different tasks. We are planning to expand this tool in the future so you can colaborate with other people's tasks. This page has been created as a Django proyect and it is for studying purposes mainly, but feel free to create your account by signing up . You can give us a feedback then.
+    </p>
+  </section>
+  
+  {% if user.is_authenticated %}
+  <button><a href="{% url 'main_dashboard' %}">Go to dashboard</a></button>
+  {% else %}
+  <h3 style="color: rgb(127, 194, 127)">
+    Want to enroll, click on <strong><a href="{% url 'signup' %}">sign up</a></strong> 
+  </h3>
+  <h3 style="color: rgb(127, 194, 127)">
+    If you already signed up, hit on <strong><a href="{% url 'signin' %}">sign in</a></strong>
+  </h3>
+  
+  {% endif %}
+
+
+
+{% endblock %}
